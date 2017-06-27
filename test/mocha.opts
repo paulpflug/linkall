@@ -1,0 +1,2 @@
+--compilers coffee:coffeescript/register
+--timeout 500

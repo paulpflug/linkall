@@ -1,0 +1,47 @@
+{
+  "name": "linkall",
+  "version": "0.0.0",
+  "description": "Convenient tool to link up local packages",
+  "homepage": "https://github.com/paulpflug",
+  "author": {
+    "name": "Paul Pflugradt",
+    "email": "paul.pflugradt@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paulpflug/linkall"
+  },
+  "main": "lib/index.js",
+  "bin": {
+    "linkall": "./cli.js"
+  },
+  "files": [
+    "lib/*.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "npm",
+    "link",
+    "install",
+    "shell"
+  ],
+  "dependencies": {
+    "better-spawn": "^0.3.1",
+    "find-packages": "^2.1.1",
+    "which-pm": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "coffeescript": "^2.0.0-beta2",
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "build": "coffee --no-header --compile --output lib/ src/*.coffee",
+    "test": "mocha",
+    "watch": "coffee --no-header --watch --output lib/ src/*.coffee & mocha --watch",
+    "preversion": "npm test",
+    "version": "npm run build && git add .",
+    "postversion": "git push && git push --tags && npm publish"
+  }
+}

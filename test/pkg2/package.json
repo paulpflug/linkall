@@ -1,0 +1,8 @@
+{
+  "name": "pkg2",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "pkg3": ""
+  }
+}
