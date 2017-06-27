@@ -44,7 +44,7 @@ for (i = 0, len = args.length; i < len; i++) {
         console.log('-p, --pm <cli>      default package manager (defaults to npm)')
         console.log('-n, --no-install    don\'t install uninstalled packages')
         console.log('-l, --look-up <dir> additional dir to lookup local packages')
-        console.log('-u, --unlink        unlink local packages and install them regularly')
+        console.log('-u, --unlink        unlink local packages and install them directly')
         console.log('-h, --help          output usage information')
         console.log('-s, --silent        suppress output of children')
         console.log('-v, --verbose       additional output')

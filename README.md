@@ -22,7 +22,7 @@ options:
 -p, --pm <cli>      default package manager (defaults to npm)
 -n, --no-install    don't install uninstalled packages
 -l, --look-up <dir> additional dir to lookup local packages
--u, --unlink        unlink local packages and install them regularly (not implemented yet)
+-u, --unlink        unlink local packages and install them directly (not implemented yet)
 -s, --silent        suppress output of package manager
 -v, --verbose       additional output
 -t, --test          only show structure
@@ -41,7 +41,7 @@ linkall --silent --pm pnpm --look-up ../local-package-store .
 
 Default behavior is to link all found dependencies including devDependencies and all peerDependencies from them.
 If your needs are more specific, you can give orders within your package.json:
-```json
+```js
 {
     "linkall": [
         // to only link up pkg1 and pk2, if found..

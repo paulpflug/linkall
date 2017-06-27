@@ -3,3 +3,4 @@ npm-debug.log
 lib/
 test/**/node_modules
 shrinkwrap.yaml
+package-lock.json
