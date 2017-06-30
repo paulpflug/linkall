@@ -9,7 +9,7 @@ module.exports = (options) ->
   children = []
   spawnOpts = stdio: if options.silent then "pipe" else "inherit"
   spawn = (cmd, wd) => new Promise (resolve, reject) =>
-    child = betterSpawn(cmd, Object.assign({cwd:wd},spawnOpts))
+    child = betterSpawn(cmd, Object.assign({cwd:wd},noOut:options.silent))
     children.push(child)
     child.on "exit", (exitCode) ->
       if exitCode
@@ -147,7 +147,7 @@ module.exports = (options) ->
         try
           await spawn(pm+" install", pkg.path)
         catch
-            console.warn "linkall: installing #{pkg.manifest.name} in #{pkg.path} failed"
+          console.warn "linkall: installing #{pkg.manifest.name} in #{pkg.path} failed"
 
   .catch (e) ->
     console.log e

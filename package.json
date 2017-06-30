@@ -27,7 +27,7 @@
     "shell"
   ],
   "dependencies": {
-    "better-spawn": "^0.3.1",
+    "better-spawn": "^1.0.1",
     "find-packages": "^2.1.1",
     "which-pm": "^1.0.0"
   },
