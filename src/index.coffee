@@ -4,14 +4,14 @@ betterSpawn = require "better-spawn"
 findPackages = require "find-packages"
 path = require "path"
 whichpm = require "which-pm"
-concat = (arr1,arr2) -> Array.prototype.push.apply(arr1, arr2)
-module.exports = (options) ->
+concat = (arr1,arr2) => Array.prototype.push.apply(arr1, arr2)
+module.exports = (options) =>
   children = []
   spawnOpts = stdio: if options.silent then "pipe" else "inherit"
   spawn = (cmd, wd) => new Promise (resolve, reject) =>
     child = betterSpawn(cmd, Object.assign({cwd:wd},noOut:options.silent))
     children.push(child)
-    child.on "exit", (exitCode) ->
+    child.on "exit", (exitCode) =>
       if exitCode
         reject(exitCode)
       else
@@ -33,7 +33,7 @@ module.exports = (options) ->
       lookupByName[pkg.manifest.name] = pkg
       pkglist.push pkg unless onlyLookup
       return whichpm(pkg.path)
-        .then (pm) ->
+        .then (pm) =>
           if pm?
             pkg.pm = pm = pm.name
           else
@@ -42,7 +42,7 @@ module.exports = (options) ->
           arr.push pkg
     for dir in options.lds
       workers.push(findPackages(path.resolve(dir))
-      .then (result) ->
+      .then (result) =>
         workers2 = []
         for pkg in result
           workers2.push(processPkg(pkg,true))
@@ -62,10 +62,10 @@ module.exports = (options) ->
       #  console.log pkg.manifest.name+":\t"+pkg.path
       console.log "-----"
   .then =>
-    processDep = (obj, warn=false) ->
+    processDep = (obj, warn=false) =>
       linkup = []
       return linkup unless obj
-      addDep = (name) ->
+      addDep = (name) =>
         if (pkg = lookupByName[name])
           unless (pm = pkg.pm)?
             toInstall.push pkg if toInstall.indexOf(pkg) < 0
@@ -122,7 +122,7 @@ module.exports = (options) ->
         console.log toInstall.map((pkg) => pkg.manifest.name).join(", ") + "\n-----"
       else
         console.log "linkall: no need to install any packages"
-  .then ->
+  .then =>
     unless options.test
       for pm,pkgs of toLink
         for pkg in pkgs
@@ -149,8 +149,8 @@ module.exports = (options) ->
         catch
           console.warn "linkall: installing #{pkg.manifest.name} in #{pkg.path} failed"
 
-  .catch (e) ->
+  .catch (e) =>
     console.log e
-  return (sig) ->
+  return (sig) =>
     for child in children
       child.close(sig)
